@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hpa-test
+  labels:
+    app: hpa-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hpa-test
+  template:
+    metadata:
+      labels:
+        app: hpa-test
+    spec:
+      containers:
+        - name: hpa-test
+          image: hpa-test:latest
+          imagePullPolicy: IfNotPresent
+      terminationGracePeriodSeconds: 500
